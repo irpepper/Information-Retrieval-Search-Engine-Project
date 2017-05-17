@@ -1,0 +1,54 @@
+README
+
+Jordan Sanders
+CSCE 5200
+Final Project
+
+Programs:
+download.py
+make_model.py
+query.py
+utils.py
+
+Other files:
+stop_words.txt
+tfidf.pickle
+
+
+To perform a query:
+python query.py
+
+To download 3000 webpages:
+python download.py
+
+To create the vector space model:
+python make_model.py
+
+
+Notes:
+I have NLTK and one of its dependencies imported into the main project directory (Six)
+tf and idf values have been pre-computed in the tfidf.pickle file for quick run time.
+
+
+Descriptions:
+query.py:
+  This program takes a query argument, preprocesses it, and then calculates the cosine similarity between
+  the query and all documents in the model. It then ranks them in descending order of similarity and outputs
+  the top 5 URLs with the highest similarity to the query. It then prompts the  user to continue or end.
+
+utils.py:
+  This file contains all functions written in this course. Specifically written for this
+  project was the checkURL and fixURL functions.
+
+download.py:
+  This program uses the urllib2 and bs4 libraries to download webpages and parse them
+  for all links. Links are then added to a queue from the queue library using breadth first search.
+  All links already visited are not added to the queue. Downloaded pages are stripped of
+  all markup text and written to a cPickle binary file to be used for creating the model later.
+
+make_model.py:
+  This program opens the pickled webpage text files and runs the tfidf_text function
+  that creates the vector space model using a dictionary that is then stored in a pickle
+  file called tfidf.
+
+tfidf.pickle is the tf and idf dictionaries pre-computed for quick run time. Delete for re-compute
